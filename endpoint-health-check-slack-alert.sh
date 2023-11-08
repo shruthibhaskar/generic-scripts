@@ -18,7 +18,7 @@ send_slack_message() {
 
 # Print initial message with formatting
 echo "-----------------------------"
-echo "Initiating health check for the stg intranet proxy..."
+echo "Initiating health check for the $endpoint..."
 echo "-----------------------------"
 
 # Perform curl request with error handling and timeout
@@ -28,20 +28,20 @@ response=$(curl -s -o /dev/null -w "%{http_code}" -m 60 "$endpoint" 2>/dev/null)
 if [ $? -eq 0 ]; then
     if [ $response -eq 200 ]; then
         echo "-----------------------------------------"
-        echo "Health check completed for stg intranet proxy."
+        echo "Health check completed for $endpoint."
         echo "Status code: $response"
         echo "-----------------------------------------"
         send_slack_message "🟢 The endpoint is healthy. Status code: $response."
     else
         echo "-----------------------------------------"
-        echo "Health check completed for stg intranet proxy."
+        echo "Health check completed for $endpoint."
         echo "Status code: $response"
         echo "-----------------------------------------"
         send_slack_message "🔴 The endpoint is unhealthy. Status code: $response."
     fi
 else
     echo "-----------------------------"
-    echo "Failed to reach the stg intranet proxy."
+    echo "Failed to reach the $endpoint."
     echo "-----------------------------"
     send_slack_message "❗ Failed to reach the $endpoint."
 fi
