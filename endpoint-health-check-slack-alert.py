@@ -2,7 +2,7 @@ import requests
 
 # Set variables
 endpoint = "http://10.40.76.4:3128"
-slack_webhook_url = "https://hooks.slack.com/services/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"
+slack_webhook_url = "https://hooks.slack.com/services/dummy/dummy"
 channel = "#alert-test"
 botname = "Health Check Bot"
 
